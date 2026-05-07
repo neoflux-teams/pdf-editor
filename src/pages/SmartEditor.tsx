@@ -21,7 +21,8 @@ import { PDFDocument, rgb, degrees } from "@cantoo/pdf-lib";
 import fontkit from "@pdf-lib/fontkit";
 import { saveAs } from "file-saver";
 
-pdfjsLib.GlobalWorkerOptions.workerSrc = `https://unpkg.com/pdfjs-dist@${pdfjsLib.version}/build/pdf.worker.min.mjs`;
+// Use local worker to avoid CDN loading issues
+pdfjsLib.GlobalWorkerOptions.workerSrc = "/pdf.worker.min.mjs";
 
 const RENDER_SCALE = 2;
 
