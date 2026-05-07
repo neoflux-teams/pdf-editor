@@ -36,7 +36,7 @@ export default function SplitPDF() {
       });
       const results = await splitPDF(file, parts);
       results.forEach((bytes, i) => {
-        const blob = new Blob([bytes.buffer], { type: "application/pdf" });
+        const blob = new Blob([bytes.buffer as ArrayBuffer], { type: "application/pdf" });
         saveAs(blob, `split_part_${i + 1}.pdf`);
       });
     } catch (error) {
