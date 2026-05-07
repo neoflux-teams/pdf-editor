@@ -22,7 +22,7 @@ import fontkit from "@pdf-lib/fontkit";
 import { saveAs } from "file-saver";
 
 // Use local worker to avoid CDN loading issues
-pdfjsLib.GlobalWorkerOptions.workerSrc = "/pdf.worker.min.mjs";
+pdfjsLib.GlobalWorkerOptions.workerSrc = new URL("pdfjs-dist/build/pdf.worker.min.mjs", import.meta.url).toString();
 
 const RENDER_SCALE = 2;
 
