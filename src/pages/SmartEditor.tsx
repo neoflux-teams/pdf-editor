@@ -21,8 +21,10 @@ import { PDFDocument, rgb, degrees } from "@cantoo/pdf-lib";
 import fontkit from "@pdf-lib/fontkit";
 import { saveAs } from "file-saver";
 
-// Use CDN worker - server doesn't support .mjs MIME type
-pdfjsLib.GlobalWorkerOptions.workerSrc = `https://cdn.jsdelivr.net/npm/pdfjs-dist@${pdfjsLib.version}/build/pdf.worker.min.mjs`;
+// Inline worker code to avoid external loading issues
+import workerCode from "pdfjs-dist/build/pdf.worker.min.mjs?raw";
+const workerBlob = new Blob([workerCode], { type: "application/javascript" });
+pdfjsLib.GlobalWorkerOptions.workerSrc = URL.createObjectURL(workerBlob);
 
 const RENDER_SCALE = 2;
 
